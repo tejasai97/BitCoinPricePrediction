@@ -118,7 +118,7 @@ trainData = pd.DataFrame(d)
 # Feed the data: [deltaP, deltaP90, deltaP180, deltaP360] to train the linear model. 
 # Use the statsmodels ols function.
 # Use the variable name model for your fitted model
-# YOUR CODE HERE
+
 model = smf.ols('deltaP ~ deltaP90 + deltaP180 + deltaP360', trainData) 
 model = model.fit()
 
@@ -128,7 +128,7 @@ print model.params
 
 # Perform the Bayesian Regression to predict the average price change for each dataset of test using train1 as input.
 # This should be similar to above where it was computed for train2.
-# YOUR CODE HERE
+
 weight=2
 testDeltaP90 = np.empty(0)
 testDeltaP180 = np.empty(0)
@@ -141,7 +141,7 @@ for i in xrange(0,len(train1_360.index)) :
     testDeltaP360 = np.append(testDeltaP360, computeDelta(weight,test_360.iloc[i],train1_360))
 
 # Actual deltaP values for test data.
-# YOUR CODE HERE (use the right variable names so the below code works)
+
 testDeltaP = np.asarray(test_360[['Yi']])
 testDeltaP = np.reshape(testDeltaP, -1)
 
@@ -161,8 +161,7 @@ compareDF = pd.DataFrame(compare)
 
 
 # Compute the MSE and print the result
-# HINT: consider using the sm.mean_squared_error function
+
 MSE = 0.0
-# YOUR CODE HERE
 MSE = sm.mean_squared_error(testDeltaP, result)
 print "The MSE is %f" % (MSE)
